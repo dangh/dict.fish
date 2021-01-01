@@ -16,9 +16,11 @@ function dict --argument-names id action key value
       set --append $values_ref $value
     end
   case get
-    test --query --local $index && echo $values[$index]
+    set --query --local index && echo $values[$index]
   case delete
-    test --query --local $index && set --erase {$values_ref}[$index]
+    set --query --local index \
+      && set --erase {$keys_ref}[$index] \
+      && set --erase {$values_ref}[$index]
   case \*
     test -n "$keys" || return
     for i in (seq (count $keys))
