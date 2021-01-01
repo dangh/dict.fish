@@ -1,5 +1,5 @@
 function dict --argument-names id action key value
-  set --local id (string replace --regex --all '[^\w]' _ $id)
+  set --local id (string escape --style=var $id)
   set --local keys_ref _dict_{$id}_keys
   set --local values_ref _dict_{$id}_values
   set --query --global $keys_ref || set --global $keys_ref
